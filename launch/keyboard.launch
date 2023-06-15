@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+        <node name="tele_key" pkg="sophon_robot" type="teleop_key.py" output="screen" />
+</launch>
+
