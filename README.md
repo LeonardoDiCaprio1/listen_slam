@@ -46,7 +46,7 @@ roslaunch sophon_robot nav.launch
 ```
  roslaunch sophon_robot view_nav.launch 
 ```
-## 注意事项：
+## 3.注意事项：
 - 修改速度参数：找到与线速度相关的参数，例如max_linear_velocity、min_linear_velocity、linear_acceleration等，然后修改这些参数的值来调整线速度。你可以使用rosparam命令行工具或编写一个ROS节点来修改参数。以下是一个示例使用rosparam工具修改参数的命令：
 ```
 rosparam set /move_base/max_linear_velocity 0.4 
