@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>sophon_robot</name>
+  <name>listen_slam</name>
   <version>0.0.0</version>
   <description>The sophon_robot package</description>
 
