@@ -1,6 +1,6 @@
 # 简介
 - 请结合host_slam功能包操作
-- 功能包地址：
+- 功能包地址：https://github.com/LeonardoDiCaprio1/host_slam
 
 # 开发环境
 - Ubuntu 20.04
@@ -45,14 +45,4 @@ roslaunch sophon_robot nav.launch
 - (b)先自行建立ros包，从机端开启导航可视化
 ```
  roslaunch sophon_robot view_nav.launch 
-```
-## 3.注意事项：
-- 修改速度参数：找到与线速度相关的参数，例如max_linear_velocity、min_linear_velocity、linear_acceleration等，然后修改这些参数的值来调整线速度。你可以使用rosparam命令行工具或编写一个ROS节点来修改参数。以下是一个示例使用rosparam工具修改参数的命令：
-```
-rosparam set /move_base/max_linear_velocity 0.4 
-```
-- 重新启动导航系统：一旦你修改了速度参数，你需要重新启动导航系统，以使新的参数生效。这可以通过重启导航相关的节点来实现，例如重新启动move_base节点。
-```
-rosnode kill /move_base  
-roslaunch sophon_robot nav.launch  
 ```
