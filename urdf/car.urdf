@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<robot name="mycar">
+<!-- 定义原点1-->
+    <link name="footprint1">
+        <visual>
+            <geometry>
+                <sphere radius="0.0001" />
+            </geometry>
+        </visual>
+    </link>
+    
+    <!-- 定义底层板 -->
+    <link name="bottom_link">
+        <visual>
+            <geometry>
+                <box size="0.29 0.125 0.01" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="black">
+                <color rgba="0 0 0 0.8" />
+            </material>
+        </visual>
+    </link>
+
+    <!--定义顶层板-->
+  <link name="top_link">
+    <visual>
+      <geometry>
+        <box size="0.255 0.125 0.01"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <material name="yellow">
+              <color rgba="1.0 1.0 1.0 0.8" />
+            </material>
+    </visual>
+  </link>
+
+<!-- 定义RGB摄像头 -->
+    <link name="camera">
+        <visual>
+            <geometry>
+                <box size="0.04 0.16 0.03" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="red">
+                <color rgba="1 1 1 0.8" />
+            </material>
+        </visual>
+    </link>
+
+<!--定义铜柱1-->
+  <link name="pillar1">
+    <visual>
+      <geometry>
+        <cylinder radius="0.006" length="0.053"/>
+      </geometry>
+      <material name="yellow">
+              <color rgba="0.7 0.3 0.2 1" />
+              </material>
+    </visual>
+  </link>
+
+<!--定义铜柱2-->
+  <link name="pillar2">
+    <visual>
+      <geometry>
+        <cylinder radius="0.006" length="0.053"/>
+      </geometry>
+      <material name="yellow">
+              <color rgba="0.7 0.3 0.2 1" />
+              </material>
+    </visual>
+  </link>
+
+<!--定义铜柱3-->
+  <link name="pillar3">
+    <visual>
+      <geometry>
+        <cylinder radius="0.006" length="0.053"/>
+      </geometry>
+      <material name="yellow">
+              <color rgba="0.7 0.3 0.2 1" />
+              </material>
+    </visual>
+  </link>
+
+  <!--定义铜柱4-->
+  <link name="pillar4">
+    <visual>
+      <geometry>
+        <cylinder radius="0.006" length="0.053"/>
+      </geometry>
+      <material name="yellow">
+            <color rgba="0.7 0.3 0.2 1" />
+            </material>
+    </visual>
+  </link>
+
+<!--定义前轮1-->
+  <link name="front1_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.03" length="0.025"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="1.5705 0 0" />
+      <material name="black">
+                <color rgba="0.0 0.0 0.0 1.0" />
+            </material>
+    </visual>
+  </link>
+
+<!--定义前轮2-->
+  <link name="front2_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.03" length="0.025"/>
+      </geometry>
+       <origin xyz="0 0 0" rpy="1.5705 0 0" />
+        <material name="black">
+             <color rgba="0.0 0.0 0.0 1.0" />
+        </material>
+    </visual>
+  </link>
+
+ <!--定义后轮1-->
+  <link name="rear1_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.03" length="0.025"/>
+      </geometry>
+        <origin xyz="0 0 0" rpy="1.5705 0 0" />
+        <material name="black">
+            <color rgba="0.0 0.0 0.0 1.0" />
+        </material>
+    </visual>
+  </link>
+
+<!--定义后轮2-->
+  <link name="rear2_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.03" length="0.025" />
+      </geometry>
+        <origin xyz="0 0 0" rpy="1.5705 0 0" />
+        <material name="black">
+            <color rgba="0.0 0.0 0.0 1.0" />
+        </material>
+    </visual>
+  </link> 
+
+<!--定义激光雷达-->
+  <link name="lidar_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.03" length="0.015"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <material name="black">
+            <color rgba="0.0 0.0 0.0 1.0" />
+        </material>
+    </visual>
+  </link>
+
+<!-- 底层板与原点节点 -->
+    <joint name="base_link1base_footprint" type="fixed">
+        <parent link="footprint1" />
+        <child link="bottom_link"/>
+        <origin xyz="0 0 0.055" />
+    </joint>
+
+<!-- 顶层板与原点节点 -->
+<joint name="base_link2base_footprint" type="fixed">
+        <parent link="footprint1" />
+        <child link="top_link"/>
+        <origin xyz="0 0 0.11" />
+    </joint>
+
+    <!-- 底层板与RGB相机关节 -->
+    <joint name="camera2_baselink" type="fixed">
+        <parent link="bottom_link"/>
+        <child link="camera" />
+        <!-- 需要计算两个 link 的物理中心之间的偏移量 -->
+        <origin xyz="0.14 0 0.015" rpy="0 0 0" />
+        <!-- <axis xyz="0 0 0" /> -->
+    </joint>
+
+<!-- 底层板与铜柱1关节 -->
+    <joint name="pillar1_baselink" type="fixed">
+        <parent link="bottom_link"/>
+        <child link="pillar1" />
+        <!-- 需要计算两个 link 的物理中心之间的偏移量 -->
+        <origin xyz="0.1 -0.05 0.0325" rpy="0 0 0" />
+    </joint>
+
+    <!-- 底层板与铜柱2关节 -->
+    <joint name="pillar2_baselink" type="fixed">
+        <parent link="bottom_link"/>
+        <child link="pillar2" />
+        <!-- 需要计算两个 link 的物理中心之间的偏移量 -->
+        <origin xyz="-0.12 -0.05 0.0325" rpy="0 0 0" />
+    </joint>
+
+    <!-- 底层板与铜柱3关节 -->
+    <joint name="pillar3_baselink" type="fixed">
+        <parent link="bottom_link"/>
+        <child link="pillar3" />
+        <!-- 需要计算两个 link 的物理中心之间的偏移量 -->
+        <origin xyz="-0.12 0.05 0.0325" rpy="0 0 0" />
+    </joint>
+
+    <!-- 底层板与铜柱4关节 -->
+    <joint name="pillar4_baselink" type="fixed">
+        <parent link="bottom_link"/>
+        <child link="pillar4" />
+        <!-- 需要计算两个 link 的物理中心之间的偏移量 -->
+        <origin xyz="0.1 0.05 0.0325" rpy="0 0 0" />
+    </joint>
+
+<!-- 底层板与前轮1关节 -->
+    <joint name="front1_baselink" type="continuous">
+        <parent link="bottom_link"/>
+        <child link="front1_wheel" />
+        <!-- 需要计算两个 link 的物理中心之间的偏移量 -->
+        <origin xyz="0.115 -0.0625 -0.0325" rpy="0 0 0" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <!-- 底层板与前轮2关节 -->
+    <joint name="front2_baselink" type="continuous">
+        <parent link="bottom_link"/>
+        <child link="front2_wheel" />
+        <!-- 需要计算两个 link 的物理中心之间的偏移量 -->
+        <origin xyz="0.115 0.0625 -0.0325" rpy="0 0 0" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+<!-- 底层板与后轮1关节 -->
+    <joint name="rear1_baselink" type="continuous">
+        <parent link="bottom_link"/>
+        <child link="rear1_wheel" />
+        <!-- 需要计算两个 link 的物理中心之间的偏移量 -->
+        <origin xyz="-0.115 -0.0625 -0.0325" rpy="0 0 0" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <!-- 底层板与后轮2关节 -->
+    <joint name="rear2_baselink" type="continuous">
+        <parent link="bottom_link"/>
+        <child link="rear2_wheel" />
+        <!-- 需要计算两个 link 的物理中心之间的偏移量 -->
+        <origin xyz="-0.115 0.0625 -0.0325" rpy="0 0 0" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+<!-- 顶层板与激光雷达关节 -->
+<joint name="ji" type="fixed">
+        <parent link="top_link" />
+        <child link="lidar_link"/>
+        <origin xyz="0.1 0 0.0125" />
+    </joint>
+    
+</robot>
